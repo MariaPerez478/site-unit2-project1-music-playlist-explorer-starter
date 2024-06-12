@@ -1,36 +1,16 @@
-/*ody {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f8f8;
-}
-
-#banner{
-    color: #BEAFC2;
-    display: flex;
-    justify-content: left;
-    background-image: url(assets/img/purpleBackground.png);
-    background-size: cover;
-    background-position: center;
-    align-items: center;
-    height: 75px;
-
-}
-h1 {
-    margin-left: 15px;
-}
-*/
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #695E93;
 }
 
 header {
-    background-color: #BEAFC2;
-    color: white;
+    background-color: #EAE7FA; 
+    color: black;
     text-align: center;
     padding: 20px;
+    font-size: 20px;
 }
 
 main {
@@ -38,8 +18,8 @@ main {
 }
 
 footer {
-    background-color: #BEAFC2;
-    color: white;
+    background-color: #EAE7FA;
+    color: black;
     text-align: center;
     padding: 20px;
 }
@@ -49,10 +29,19 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+    background-color: #695E93 ;
+
+
+
+
+
+
+    /**/
+    
 }
 
 .playlist-card {
-    background-color: #fff;
+    background-color: #BEAFC2;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 15px;
@@ -68,6 +57,7 @@ footer {
 .like-container {
     display: flex;
     align-items: center;
+    
 }
 
 .like-btn {
@@ -78,6 +68,7 @@ footer {
     height: 30px; /* Adjust height as needed */
     cursor: pointer;
     transition: transform 0.3s ease;
+    
 }
 
 .like-btn:hover{
@@ -93,6 +84,11 @@ footer {
     margin-left: 5px;
 }
 
+
+
+
+
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -103,9 +99,10 @@ footer {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    
  }
  .modal-content {
-    background-color: #fefefe;
+    background-color: #BEAFC2;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
@@ -124,9 +121,9 @@ footer {
     cursor: pointer;
  }
 
- #shuffleButton {
+ /*#shuffleButton {
     background-color: #4CAF50; /* Green background */
-    color: white;
+    /*color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -135,5 +132,100 @@ footer {
 }
 
 #shuffleButton:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #45a049; } /* Darker green on hover */
+
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
+
+.delete-btn:hover {
+    background-color: darkred;
+}
+
+/*//////////////////////////////////////////////////*
+
+.featured-playlist {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Playlist details container */
+
+
+
+.featured-playlist {
+    display: flex;
+    gap: 20px;
+    flex-basis: 30%;
+}
+
+.playlist-details {
+
+    /*display: flex;
+    flex-direction: column; /* Stack items vertically */
+    /*justify-content: flex-start; /* Align items at the start */
+    
+        grid-column-start: 1;
+        grid-column-end: 3;
+      
+}
+
+.song-details {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align items at the start */
+    flex-basis: 60%;
+}
+
+.playlist-details,
+.song-details {
+    flex-basis: 50%; /* Each takes up half of the available space */
+}
+
+#navigation ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+
+}
+
+#navigation ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+#navigation ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.playlist-details > img {
+    height: 35%;
+    width: 35%;
+}
+/* Make playlist details and song details side by side */
+
+
+/* Make playlist details and song details side by side */
+
+
+a {
+    display: flex;
+    gap: 20px;
+    color: black;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+

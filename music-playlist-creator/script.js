@@ -1,29 +1,3 @@
-/*function openModal(playlistID, playlistName, playlistCreator, playlistArt) {
-    var modal = document.getElementById("musicModal");
-    var span = modal.getElementsByClassName("close")[0];
-    var playlist = data.playlists.find(item => item.playlistID === playlistID);
-
-    var playlistNameElement = document.getElementById("playlistName");
-    var musicImageElement = document.getElementById("musicImage");
-    var likeCountElement = document.getElementById("likeCount");
-
-    playlistNameElement.textContent = playlistName;
-    musicImageElement.src = playlistArt;
-    likeCountElement.textContent = "Likes: " + playlist.likeCount;
-
-    modal.style.display = "block";
-
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-}*/
-
 function openModal(playlistID, playlistName, playlistCreator, playlistArt, songs) {
     // Get modal elements
     var modal = document.getElementById("musicModal");
@@ -74,7 +48,7 @@ function openModal(playlistID, playlistName, playlistCreator, playlistArt, songs
     // Add songs
     var songsList = document.createElement("ul");
     songs.forEach(function(song) {
-        var songItem = document.createElement("li");
+        var songItem = document.createElement("a"); //li
         var songCover = document.createElement("img");
         songCover.src = song.cover_art;
         songCover.alt = "Song Cover";
@@ -106,68 +80,13 @@ function openModal(playlistID, playlistName, playlistCreator, playlistArt, songs
     // Display modal
     modal.style.display = "block";
 }
-/*
-//var playlists = data.playlists;
-
-// Display playlists
-var playlistCards = document.querySelector(".playlist-cards");
-playlists.forEach(function(playlist) {
-    var playlistCard = document.createElement("div");
-    playlistCard.classList.add("playlist-card");
-
-    playlistCard.setAttribute("data-playlist-id", playlist.playlistID);
-
-    playlistCard.onclick = function() {
-        openModal(playlist.playlistID, playlist.playlist_name, playlist.playlist_creator, playlist.playlist_art, playlist.songs);
-    };
-
-    var playlistImage = document.createElement("img");
-    playlistImage.src = playlist.playlist_art;
-    playlistImage.alt = "Playlist Cover";
-
-    var playlistName = document.createElement("h2");
-    playlistName.textContent = playlist.playlist_name;
-
-    var playlistCreator = document.createElement("p");
-    playlistCreator.textContent = "Creator: " + playlist.playlist_creator;
-
-    var likeContainer = document.createElement("div");
-    likeContainer.classList.add("like-container");
-
-    var likeButton = document.createElement("button");
-    likeButton.classList.add("like-btn");
-    likeButton.innerHTML = "<img src='assets/img/heart.png' alt='Like'>";
-
-    var likeCount = document.createElement("p");
-    likeCount.classList.add("like-count");
-    likeCount.textContent = playlist.likeCount;
-
-    likeContainer.appendChild(likeButton);
-    likeContainer.appendChild(likeCount);
-
-    playlistCard.appendChild(playlistImage);
-    playlistCard.appendChild(playlistName);
-    playlistCard.appendChild(playlistCreator);
-    playlistCard.appendChild(likeContainer);
-
-    playlistCards.appendChild(playlistCard);
-});
-
-// Add event listener to handle like button clicks
-playlistCards.addEventListener('click', function(event) {
-    if (event.target && event.target.classList.contains('like-btn')) {
-        var playlistID = event.target.closest('.playlist-card').getAttribute('data-playlist-id');
-        likePlaylist(playlistID);
-    }
-});*/
-
 
 
 
 
 function shuffleSongs() {
     // Select all songs
-    var songsList = document.querySelectorAll('.song-list li');
+    var songsList = document.querySelectorAll('.song-list a'); //li
 
     // Convert NodeList to an array for easier manipulation
     var songsArray = Array.from(songsList);
@@ -189,17 +108,24 @@ function shuffleSongs() {
 }
 
 
-
-
-
-
-
-
-
-
 // Load playlists
 var playlists = data.playlists;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////
 // Display playlists
 var playlistCards = document.querySelector(".playlist-cards");
 playlists.forEach(function(playlist) {
@@ -207,9 +133,7 @@ playlists.forEach(function(playlist) {
     playlistCard.classList.add("playlist-card");
     //
     playlistCard.setAttribute("data-playlist-id", playlist.playlistID);
-    //playlistCard.setAttribute('data-playlist-id', playlist.playlistID); // Add this line
-    //console.log("Playlist ID attribute:", playlistCard.getAttribute('data-playlist-id'));
-    //playlistCard.setAttribute('data-playlist-id', playlist.playlistID);
+    
     playlistCard.onclick = function() {
         openModal(playlist.playlistID, playlist.playlist_name, playlist.playlist_creator, playlist.playlist_art, playlist.songs);
     };
@@ -220,24 +144,84 @@ playlists.forEach(function(playlist) {
     playlistName.textContent = playlist.playlist_name;
     var playlistCreator = document.createElement("p");
     playlistCreator.textContent = "Creator: " + playlist.playlist_creator;
+    
+    ///////////////////////////////////////////
+
+
+    var deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-btn");
+    deleteButton.textContent = "Delete";
+    deleteButton.onclick = function(event) {
+        event.stopPropagation(); // Prevent event propagation to parent elements
+        deletePlaylist(playlist.playlistID);
+        playlistCard.remove(); // Remove the playlist card from the display
+    };
+
+    // Like button container
+    var playlistImage = document.createElement("img");
+    playlistImage.src = playlist.playlist_art;
+    playlistImage.alt = "Playlist Cover";
+    var playlistName = document.createElement("h2");
+    playlistName.textContent = playlist.playlist_name;
+    var playlistCreator = document.createElement("p");
+    playlistCreator.textContent = "Creator: " + playlist.playlist_creator;
+    
+    // Like button container
     var likeContainer = document.createElement("div");
     likeContainer.classList.add("like-container");
     var likeButton = document.createElement("button");
     likeButton.classList.add("like-btn");
-    likeButton.innerHTML = "<img src='assets/img/heart.png' alt='Like'>";
     var likeCount = document.createElement("p");
     likeCount.classList.add("like-count");
     likeCount.textContent = playlist.likeCount;
     likeContainer.appendChild(likeButton);
     likeContainer.appendChild(likeCount);
+    
+    // Delete button container
+    var deleteContainer = document.createElement("div");
+    deleteContainer.classList.add("delete-container");
+    var deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-btn");
+    deleteButton.textContent = "Delete";
+    deleteButton.onclick = function(event) {
+        event.stopPropagation(); // Prevent event propagation to parent elements
+        var playlistID = playlist.playlistID;
+        deletePlaylist(playlistID);
+        playlistCard.remove(); // Remove the playlist card from the display
+    };
+    deleteContainer.appendChild(deleteButton);
+    
+    // Append elements to playlist card
     playlistCard.appendChild(playlistImage);
     playlistCard.appendChild(playlistName);
     playlistCard.appendChild(playlistCreator);
     playlistCard.appendChild(likeContainer);
+    playlistCard.appendChild(deleteContainer); // Add the delete button container
+    
     playlistCards.appendChild(playlistCard);
 });
 
+function deletePlaylist(playlistID) {
+    // Find the index of the playlist in the data model
+    var index = data.playlists.findIndex(function(item) {
+        return item.playlistID === playlistID;
+    });
 
+    // If the playlist is found, remove it from the data model
+    if (index !== -1) {
+        data.playlists.splice(index, 1);
+    } else {
+        console.error("Playlist not found for ID:", playlistID);
+    }
+}
+
+
+
+
+
+
+    /////////////////////////////////////////////////////////
+    
 document.querySelectorAll('.like-btn').forEach(function(likeButton) {
     likeButton.addEventListener('click', function(event) {
         event.stopPropagation(); // Prevent event propagation to parent elements
@@ -248,17 +232,25 @@ document.querySelectorAll('.like-btn').forEach(function(likeButton) {
 
 
 
+//////////////////////////////////////////////////////////
+
 
 function likePlaylist(playlistID) {
-    console.log("Playlist ID:", playlistID); 
     // Find the playlist in the data model
-    var playlist = playlists.find(function(item) {
-        return item.playlistID === playlistID;
+    var playlist = data.playlists.find(function(item) {
+        return item.playlistID == playlistID;
     });
 
     if (playlist) {
-        // Increment the like count
-        playlist.likeCount++;
+        // If the playlist is not liked, increment the like count
+        // If it's already liked, decrement the like count
+        if (!playlist.liked) {
+            playlist.likeCount++;
+            playlist.liked = true;
+        } else {
+            playlist.likeCount--;
+            playlist.liked = false;
+        }
 
         // Update the like count in the DOM
         var likeCountElement = document.querySelector(`[data-playlist-id="${playlistID}"] .like-count`);
@@ -266,13 +258,16 @@ function likePlaylist(playlistID) {
             likeCountElement.textContent = playlist.likeCount;
         } else {
             console.error("Like count element not found for playlist ID:", playlistID);
-            
         }
 
         // Update the like button appearance
         var likeButton = document.querySelector(`[data-playlist-id="${playlistID}"] .like-btn`);
         if (likeButton) {
-            likeButton.classList.add('clicked');
+            if (playlist.liked) {
+                likeButton.classList.add('liked');
+            } else {
+                likeButton.classList.remove('liked');
+            }
         } else {
             console.error("Like button not found for playlist ID:", playlistID);
         }
@@ -284,38 +279,12 @@ function likePlaylist(playlistID) {
     }
 }
 
-
-    // Increment the like count
-   /* playlist.likeCount++;
-
-    // Update the like count in the DOM
-    var likeCountElement = document.querySelector(`[data-playlist-id="${playlistID}"] .like-count`);
-    likeCountElement.textContent = playlist.likeCount;
-
-    // Update the like button appearance
-    var likeButton = document.querySelector(`[data-playlist-id="${playlistID}"] .like-btn`);
-    likeButton.classList.add('clicked');
-
-    // Update the data model (optional if you're not persisting data)
-    // This step will depend on how you're managing your data
-}
-
-
-*/
-
-// Add event listeners to each like button
-document.querySelectorAll('.like-btn').forEach(function(likeButton) {
-    likeButton.addEventListener('click', function(event) {
+document.querySelector(".playlist-cards").addEventListener('click', function(event) {
+    if (event.target && event.target.classList.contains('like-btn')) {
+        event.stopPropagation(); // Prevent event propagation to parent elements
         var playlistID = event.target.closest('.playlist-card').getAttribute('data-playlist-id');
         likePlaylist(playlistID);
-    });
+    }
 });
 
-
-
-
-//document.getElementById('shuffleButton').addEventListener('click', function() {
- //   shuffleSongs();
-//});
-
-// Function to shuffle songs
+////////////////////////////////////////////////////////

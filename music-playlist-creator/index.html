@@ -8,23 +8,27 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
     <header id="banner">
         <h1>Music Playlist Explorer</h1>
+        <nav id="navigation">
+            <ul>
+                <a href="index.html">PLAYLISTS</a></li>
+                <a href="featured.html">FEATURED PLAYLIST</a></li>
+            </ul>
     </header>
 
     <main> 
-        <div class="playlist-cards">
-            <!-- Sample playlist card -->
-           
-                
+         <div class="playlist-cards"> 
+            
         </div>
     </main>
 
     <footer>
-        <!-- Your footer content here -->
-        <p>&copy; 2024 Music Playlist Explorer</p>
+        
+        <p>&copy; 2024 Music Playlist Explorer MariaPerez478</p>
     </footer>
     <script src="data/data.js"></script>
     <script src="script.js"></script>
@@ -32,14 +36,27 @@
          <div id="musicModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <div class="playlist-details">
+
+
+                <!--                -->
+
+                <img id="playlistImage" src="" alt="playlist image">
+                <h1 id="playlistName"> </h1>
+                <h3 id="creatorName"> </h3>
+                <div id="songList"> 
+                    <div id="songInfo"> 
+                
+                    </div>
+                </div>
+
+                <!-- <div class="playlist-details"> -->
                     
                 </div>
                 <div class="song-list">
-                    <h3>Songs</h3>
-                    <button id="shuffleButton">Shuffle</button>
+                      <!--<h3>Songs</h3> -->
+                     <!-- <button id="shuffleButton">Shuffle</button> -->
                     <ul>
-                        <!-- Song items will be dynamically generated here -->
+                       
                     </ul>
                 </div>
             </div>
