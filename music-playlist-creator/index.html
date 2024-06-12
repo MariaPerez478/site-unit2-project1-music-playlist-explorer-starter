@@ -10,18 +10,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <!-- Your header content here -->
+    <header id="banner">
+        <h1>Music Playlist Explorer</h1>
     </header>
 
     <main> 
-        <!-- Your main content here -->
+        <div class="playlist-cards">
+            <!-- Sample playlist card -->
+           
+                
+        </div>
     </main>
 
     <footer>
         <!-- Your footer content here -->
+        <p>&copy; 2024 Music Playlist Explorer</p>
     </footer>
     <script src="data/data.js"></script>
     <script src="script.js"></script>
+
+         <div id="musicModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="playlist-details">
+                    
+                </div>
+                <div class="song-list">
+                    <h3>Songs</h3>
+                    <button id="shuffleButton">Shuffle</button>
+                    <ul>
+                        <!-- Song items will be dynamically generated here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
